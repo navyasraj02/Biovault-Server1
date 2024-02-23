@@ -7,3 +7,14 @@ from .route_func import fpMatch
 def home():
     
     return  {"status": "success", "message": "Connected to server 1"}
+@app.route('/api/log',methods=["GET"])
+def log():
+    id=request.get("id")
+    kp=request.get("kp")
+    desc=request.get("desc")
+    eUser=db.fing1.find_one({"fid":id})
+    if eUser:
+        #match the segment retrieved with the incoming segment using match algo
+        return {"success":"true"}
+    else:
+        return {"success": "false"}
