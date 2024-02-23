@@ -16,6 +16,10 @@ app.config['UPLOAD_FOLDER'] = os.path.join(os.path.abspath(os.path.dirname(os.pa
 # mongodb database
 mongodb_client = PyMongo(app)
 db = mongodb_client.db
+if db is None:
+    print("connection failed")
+else:
+    print("connected")
 CORS(app)
 
 from application import routes
