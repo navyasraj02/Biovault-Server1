@@ -8,13 +8,17 @@ def home():
     return  {"status": "success", "message": "Connected to server 1"}
 @app.route('/api/log',methods=["GET"])
 def log():
-    id=request.get("t_id")
-    kp=request.get("kp")
-    desc=request.get("desc")
-    print("data received from main server")
+    data=request.get_json("t_id")
+    data_array1 = data["data_array1"]
+    data_array2 = data["data_array2"]
+    data_string = data["data_string"]
+    print(data_array1,data_array2,data_string)
+        #kp=request.get("kp")
+    #desc=request.get("desc")
+    """print("data received from main server")
     print("id:",id)
     print("kp:",kp)
-    print("desc:",desc)
+    print("desc:",desc)"""
     return {"success":"true"}
     # eUser=db.fing1.find_one({"fid":id})
     # if eUser:
