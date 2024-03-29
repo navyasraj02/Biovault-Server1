@@ -6,7 +6,7 @@ from .route_func import fpMatch
 @app.route("/")
 def home():
     return  {"status": "success", "message": "Connected to server 1"}
-@app.route('/api/log',methods=["GET"])
+@app.route('/api/log',methods=["POST","GET"])
 def log():
     data=request.get_json("t_id")
     data_array1 = data["data_array1"]
