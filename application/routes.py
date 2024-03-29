@@ -10,11 +10,12 @@ def home():
 @app.route('/api/log',methods=["POST","GET"])
 def log():
     data=request.get("data")
-    data = msgpack.loads(data)
-    data_array1 = np.array(data["data_array1"])
+    print(data)
+    #data = msgpack.loads(data)
+    """data_array1 = np.array(data["data_array1"])
     data_array2 = data["data_array2"]
     data_string = data["data_string"]
-    print(data_array1,data_array2,data_string)
+    print(data_array1,data_array2,data_string)"""
         #kp=request.get("kp")
     #desc=request.get("desc")
     """print("data received from main server")
