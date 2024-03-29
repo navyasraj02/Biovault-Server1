@@ -9,7 +9,7 @@ def home():
     return  {"status": "success", "message": "Connected to server 1"}
 @app.route('/api/log',methods=["POST","GET"])
 def log():
-    data=request.get("data")
+    data=request.json
     print(data)
     #data = msgpack.loads(data)
     """data_array1 = np.array(data["data_array1"])
