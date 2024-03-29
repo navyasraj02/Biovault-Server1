@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-def fingerprint_segment(desc1,desc2):
+def fingerprint_segment(desc1,desc2,kp1l,kp2l):
     
     #kp_s2 = np.array_split(kp2, num_segments)
     #desc_s2 = np.array_split(desc2, num_segments)
@@ -21,5 +21,5 @@ def fingerprint_segment(desc1,desc2):
             good_matches.append(m)
     
     # Calculate the similarity score
-    score = len(good_matches) / max(len(kp_s1[2]), len(kp_s2[2])) * 100
+    score = len(good_matches) / max(kp1l,kp2l) * 100
     return score
