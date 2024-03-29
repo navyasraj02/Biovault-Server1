@@ -3,12 +3,14 @@ from flask import request, redirect, flash, url_for, jsonify, render_template
 from application import db
 from .route_func import fpMatch
 import numpy as np
+import msgpack
 @app.route("/")
 def home():
     return  {"status": "success", "message": "Connected to server 1"}
 @app.route('/api/log',methods=["POST","GET"])
 def log():
     data=request.get("data")
+    data = msgpack.loads(data)
     data_array1 = np.array(data["data_array1"])
     data_array2 = data["data_array2"]
     data_string = data["data_string"]
