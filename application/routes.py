@@ -15,20 +15,19 @@ def log():
     length = data['data']['len']
     description = data['data']['descrip']
     user_id = data['data']['user_id']
-    retrieveddesc=0 
-    kp2=0#retieve descriptiopn from 
+    query = {"user_id": user_id}
+    result = db.fing1.find_one(query) #insert correct db give connectio .env diferently
+    rdescription= result["description"]
+    rlength= result["length"]
+     
+    #retieve descriptiopn from 
     #code to retieve data from mongodb and match
-    #score=fpMatch.fingerprint_segment(description,retrieveddesc,length,kp2)
+    score=fpMatch.fingerprint_segment(description,rdescription,length,rlength)
     score=0
     """print("data received from main server")
    """
     return {"success":"true", "score":score}
-    # eUser=db.fing1.find_one({"fid":id})
-    # if eUser:
-    #     #match the segment retrieved with the incoming segment using match algo
-    #     return {"success":"true"}
-    # else:
-    #     return {"success": "false"}
+    
 @app.route('/api/reg',methods=["POST","GET"])
 def reg():
     #code to recieve data from the server insert to mongo db with user id
@@ -44,5 +43,5 @@ def reg():
     except pymongo.errors.PyMongoError as e:
         return {"success": False, "message": f"Error inserting data: {str(e)}"}, 500  # Internal Server Error
 
-    return
+    
 
