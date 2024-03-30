@@ -15,9 +15,10 @@ def log():
     length = data['data']['len']
     description = data['data']['descrip']
     user_id = data['data']['user_id']
-    retrieveddesc=0 #retieve descriptiopn from 
+    retrieveddesc=0 
+    kp2=0#retieve descriptiopn from 
     #code to retieve data from mongodb and match
-    score=fpMatch.fingerprint_segment(description,retrieveddesc)
+    score=fpMatch.fingerprint_segment(description,retrieveddesc,length,kp2)
     
     """print("data received from main server")
    """
