@@ -29,7 +29,7 @@ def log():
     #     return {"success":"true"}
     # else:
     #     return {"success": "false"}
-@app.route('/api/reg')
+@app.route('/api/reg',methods=["POST","GET"])
 def reg():
     #code to recieve data from the server insert to mongo db with user id
     data=request.json
