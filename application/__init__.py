@@ -23,7 +23,8 @@ db = mongodb_client.db
 if db is None:
     print("connection failed")
 else:
-    print("connected")
+    print("connected : ")
+    print(db)
 CORS(app)
 
 from application import routes

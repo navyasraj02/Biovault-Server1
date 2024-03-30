@@ -3,7 +3,7 @@ from flask import request, redirect, flash, url_for, jsonify, render_template
 from application import db
 from .route_func import fpMatch
 import numpy as np
-import msgpack
+import pymongo
 @app.route("/")
 def home():
     return  {"status": "success", "message": "Connected to server 1"}
@@ -37,5 +37,11 @@ def reg():
     length = data['data']['len']
     description = data['data']['descrip']
     user_id = data['data']['user_id']
+    try:
+        insert_result = db.fing1.insert_one({"length": length, "description": description, "user_id": user_id})
+        return {"success": True, "message": f"Data inserted with ID: {insert_result.inserted_id}"}, 201  # Created status code
+    except pymongo.errors.PyMongoError as e:
+        return {"success": False, "message": f"Error inserting data: {str(e)}"}, 500  # Internal Server Error
+
     return
 
