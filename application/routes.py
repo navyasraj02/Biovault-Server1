@@ -37,6 +37,7 @@ def reg():
     length = data['data']['len']
     description = data['data']['descrip']
     user_id = data['data']['user_id']
+    #description= np.array(description, dtype=float32)
     try:
         insert_result = db.fing1.insert_one({"length": length, "description": description, "user_id": user_id})
         return {"success": True, "message": f"Data inserted with ID: {insert_result.inserted_id}"}, 201  # Created status code
