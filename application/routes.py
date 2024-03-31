@@ -23,7 +23,7 @@ def log():
     #retieve descriptiopn from 
     #code to retieve data from mongodb and match
     score=fpMatch.fingerprint_segment(description,rdescription,length,rlength)
-    score=0
+    print(score)
     """print("data received from main server")
    """
     return {"success":"true", "score":score}
