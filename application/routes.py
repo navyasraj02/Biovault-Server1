@@ -13,14 +13,13 @@ def log():
     print(data)
     #data = msgpack.loads(data)
     length = data['data']['len']
-    description = data['data']['descrip']
+    description = data['data']['descrip'] #feature set segment
     user_id = data['data']['user_id']
     query = {"user_id": user_id}
-    result = db.fing1.find_one(query) #insert correct db give connectio .env diferently
+    result = db.fing1.find_one(query) #retrieve stored feature set from database
     rdescription= np.array(result["description"])
     rlength= result["length"]
-     
-    #retieve descriptiopn from 
+     #retrieved data and the arrived data are matched
     #code to retieve data from mongodb and match
     score=fpMatch.fingerprint_segment(description,rdescription,length,rlength)
     print(score)
