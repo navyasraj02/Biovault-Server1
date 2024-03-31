@@ -17,7 +17,7 @@ def log():
     user_id = data['data']['user_id']
     query = {"user_id": user_id}
     result = db.fing1.find_one(query) #insert correct db give connectio .env diferently
-    rdescription= result["description"]
+    rdescription= np.array(result["description"])
     rlength= result["length"]
      
     #retieve descriptiopn from 
