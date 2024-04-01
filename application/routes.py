@@ -20,6 +20,7 @@ def log():
     rdescription= np.array(result["description"])
     rlength= result["length"]
      #retrieved data and the arrived data are matched
+     
     #code to retieve data from mongodb and match
     score=fpMatch.fingerprint_segment(description,rdescription,length,rlength)
     print(score)
