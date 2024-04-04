@@ -13,12 +13,16 @@ def log():
     #print(data)
     #data = msgpack.loads(data)
     length = data['data']['len']
-    description = data['data']['descrip'] #feature set segment
+    description =np.array( data['data']['descrip']) #feature set segment
     user_id = data['data']['user_id']
     query = {"user_id": user_id}
     result = db.fing1.find_one(query) #retrieve stored feature set from database
-    print("Retrieved data: ",result)
-    rdescription= np.array(result["description"])
+    print("type incoming data: ",type(description))
+    print("type ret data: ",type(result["description"]))
+    if isinstance(result["description"], list):
+        rdescription = np.fromarray(result[description], dtype=np.float32)
+    else:
+        rdescription = result["description"]
     rlength= result["length"]
      #retrieved data and the arrived data are matched
      
@@ -27,7 +31,7 @@ def log():
     print(score)
     """print("data received from main server")
    """
-    return {"success":"true", "score":score}
+    return {"success":"true",} #"score":score}
     
 @app.route('/api/reg',methods=["POST","GET"])
 def reg():
