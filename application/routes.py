@@ -10,13 +10,14 @@ def home():
 @app.route('/api/log',methods=["POST","GET"])
 def log():
     data=request.json
-    print(data)
+    #print(data)
     #data = msgpack.loads(data)
     length = data['data']['len']
     description = data['data']['descrip'] #feature set segment
     user_id = data['data']['user_id']
     query = {"user_id": user_id}
     result = db.fing1.find_one(query) #retrieve stored feature set from database
+    print("Retrieved data: ",result)
     rdescription= np.array(result["description"])
     rlength= result["length"]
      #retrieved data and the arrived data are matched
