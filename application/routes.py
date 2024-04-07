@@ -20,7 +20,7 @@ def log():
     print("type incoming data: ",type(description))
     print("type ret data: ",type(result["description"]))
     if isinstance(result["description"], list):
-        rdescription = np.fromarray(result[description], dtype=np.float32)
+        rdescription = np.array(result["description"], dtype=np.float32)
     else:
         rdescription = result["description"]
     rlength= result["length"]
