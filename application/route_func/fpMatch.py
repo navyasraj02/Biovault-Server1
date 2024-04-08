@@ -5,6 +5,10 @@ def fingerprint_segment(desc1,desc2,kp1l,kp2l):
     #kp_s2 = np.array_split(kp2, num_segments)
     #desc_s2 = np.array_split(desc2, num_segments)
 
+    # Convert desc1 and desc2 to np.float32
+    desc1 = np.array(desc1, dtype=np.float32)
+    desc2 = np.array(desc2, dtype=np.float32)
+
     # FLANN parameters
     FLANN_INDEX_KDTREE = 1
     index_params = dict(algorithm=FLANN_INDEX_KDTREE, trees=10)

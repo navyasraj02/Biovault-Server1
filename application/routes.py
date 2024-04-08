@@ -17,10 +17,14 @@ def log():
     user_id = data['data']['user_id']
     query = {"user_id": user_id}
     result = db.fing1.find_one(query) #retrieve stored feature set from database
-    print("type incoming data: ",type(description))
-    print("type ret data: ",type(result["description"]))
+
+    # print("Type incoming data: ",type(description))
+    if result is None:
+        print("Result none")
+    # else:    
+    #     print("Type ret data: ",type(result["description"]))
     if isinstance(result["description"], list):
-        rdescription = np.fromarray(result[description], dtype=np.float32)
+        rdescription = np.array(result["description"], dtype=np.float32)
     else:
         rdescription = result["description"]
     rlength= result["length"]
@@ -28,16 +32,16 @@ def log():
      
     #code to retieve data from mongodb and match
     score=fpMatch.fingerprint_segment(description,rdescription,length,rlength)
-    print(score)
+    print("Score: ",score)
     """print("data received from main server")
    """
-    return {"success":"true",} #"score":score}
+    return {"success":"true","score":score}
     
 @app.route('/api/reg',methods=["POST","GET"])
 def reg():
     #code to recieve data from the server insert to mongo db with user id
     data=request.json
-    print(data)
+    #print(data)
     #data = msgpack.loads(data)
     length = data['data']['len']
     description = data['data']['descrip']
@@ -45,6 +49,7 @@ def reg():
     #description= np.array(description, dtype=float32)
     try:
         insert_result = db.fing1.insert_one({"length": length, "description": description, "user_id": user_id})
+        print("Data stored successfully")
         return {"success": True, "message": f"Data inserted with ID: {insert_result.inserted_id}"}, 201  # Created status code
     except pymongo.errors.PyMongoError as e:
         return {"success": False, "message": f"Error inserting data: {str(e)}"}, 500  # Internal Server Error
