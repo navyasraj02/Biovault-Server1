@@ -35,7 +35,11 @@ def log():
     print("Score: ",score)
     """print("data received from main server")
    """
-    return {"success":"true","score":score}
+    
+    try:
+        return {"success":True,"score":score},201        
+    except pymongo.errors.PyMongoError as e:
+        return {"success": False}, 500  # Internal Server Error
     
 @app.route('/api/reg',methods=["POST","GET"])
 def reg():
